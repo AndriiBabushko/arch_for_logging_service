@@ -1,0 +1,37 @@
+@startuml
+title Error Logging Service Architecture
+
+package "Client" {
+  [Client SDK]
+}
+
+package "Backend" {
+  [API Backend]
+}
+
+package "Storage" {
+  [Database]
+}
+
+package "Alerts" {
+  [Real-Time Alerts]
+}
+
+package "Dashboard" {
+  [Web Dashboard]
+}
+
+package "DevOps" {
+  [DevOps/CI-CD]
+}
+
+[Client SDK] --> [API Backend] : Sends error logs
+[API Backend] --> [Database] : Stores logs
+[API Backend] --> [Real-Time Alerts] : Triggers alerts
+[Web Dashboard] --> [Database] : Fetches & analyzes logs
+[Web Dashboard] --> [Real-Time Alerts] : Displays alerts
+[DevOps/CI-CD] --> [API Backend] : Deploys & monitors
+[DevOps/CI-CD] --> [Database] : Monitors performance
+[DevOps/CI-CD] --> [Web Dashboard] : Deployment & updates
+
+@enduml
